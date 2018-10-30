@@ -24,7 +24,7 @@ log_channel = -1001249303594
 
 # Enabled plugins
 
-plugins = ["eval", "exec"]
+plugins = ["eval", "exec", "info", "purgeme", "urban"]
 
 # Command prefix
 
