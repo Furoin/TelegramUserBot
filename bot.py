@@ -2,7 +2,8 @@ import config
 
 for plugin in config.plugins:
     try:
-        exec('from plugins import {}'.format(plugin))
+        print("Starting Plugin: " + str(plugin))
+        exec('import plugins.{}'.format(plugin))
     except Exception as e:
         print(e)
 
