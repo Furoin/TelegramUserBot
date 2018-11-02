@@ -1,15 +1,14 @@
-from pyrogram import Filters
+from pyrogram import Client, Filters
 import config
 
-app = config.app
-user_id = config.user_id
+user_id = Client.user_id
 prefix = config.prefix
 
 if config.language == "english":
     from languages.english import exec_running_text, exec_error_text, exec_success_text, exec_result_text
 
 
-@app.on_message(Filters.user(user_id) & Filters.command("exec", prefix))
+@Client.on_message(Filters.user(user_id) & Filters.command("exec", prefix))
 def execute(c, m):
     colength = len("exec") + len(prefix)
     code = m.text[colength:].lstrip()

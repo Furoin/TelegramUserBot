@@ -1,15 +1,14 @@
-from pyrogram import Filters
+from pyrogram import Client, Filters
 import config
 
-app = config.app
-user_id = config.user_id
+user_id = Client.user_id
 prefix = config.prefix
 
 if config.language == "english":
     from languages.english import eval_running_text, eval_error_text, eval_success_text, eval_result_text
 
 
-@app.on_message(Filters.user(user_id) & Filters.command("eval", prefix))
+@Client.on_message(Filters.user(user_id) & Filters.command("eval", prefix))
 def evalcode(c, m):
     colength = len("eval") + len(prefix)
     code = m.text[colength:].lstrip()

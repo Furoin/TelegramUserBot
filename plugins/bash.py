@@ -1,16 +1,15 @@
-from pyrogram import Filters
+from pyrogram import Client, Filters
 import config
 import subprocess
 
-app = config.app
-user_id = config.user_id
+user_id = Client.user_id
 prefix = config.prefix
 
 if config.language == "english":
     from languages.english import bash_running_text, bash_text
 
 
-@app.on_message(Filters.user(user_id) & Filters.command("bash", prefix))
+@Client.on_message(Filters.user(user_id) & Filters.command("bash", prefix))
 def bash(client, message):
     if len(message.command) > 1:
         colength = len("bash") + len(prefix)

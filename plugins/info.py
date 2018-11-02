@@ -1,15 +1,14 @@
-from pyrogram import Filters
+from pyrogram import Client, Filters
 import config
 
-app = config.app
-user_id = config.user_id
+user_id = Client.user_id
 prefix = config.prefix
 
 if config.language == "english":
     from languages.english import info_chat_text, info_text
 
 
-@app.on_message(Filters.user(user_id) & Filters.command("info", prefix))
+@Client.on_message(Filters.user(user_id) & Filters.command("info", prefix))
 def info(client, message):
     if message.reply_to_message:
         text = info_text.format(message.reply_to_message.from_user.first_name,

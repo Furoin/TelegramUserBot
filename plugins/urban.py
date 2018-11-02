@@ -1,16 +1,15 @@
-from pyrogram import Filters
+from pyrogram import Client, Filters
 import config
 import urbandict as ud
 
-app = config.app
-user_id = config.user_id
+user_id = Client.user_id
 prefix = config.prefix
 
 if config.language == "english":
     from languages.english import urban_not_found_text, urban_text
 
 
-@app.on_message(Filters.user(user_id) & Filters.command("urban", prefix))
+@Client.on_message(Filters.user(user_id) & Filters.command("urban", prefix))
 def urban(client, message):
     if len(message.command) > 1:
         word = str(message.text)[6:].lstrip()

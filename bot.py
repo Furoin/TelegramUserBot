@@ -1,12 +1,6 @@
-import config
+from pyrogram import Client
 
-for plugin in config.plugins:
-    try:
-        print("Starting Plugin: " + str(plugin))
-        exec('import plugins.{}'.format(plugin))
-    except Exception as e:
-        print(e)
+api_id = 123456
+api_hash = "0123456789abcdef0123456789abcdef"
 
-app = config.app
-
-app.run()
+Client("account", api_id=api_id, api_hash=api_hash, plugins_dir="plugins").run()
